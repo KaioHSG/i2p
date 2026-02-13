@@ -11,7 +11,7 @@ $AppVersion       = "1.0.0"
 $DefaultDirName   = "Install-2-Path"
 
 # [REQUIRED] Direct download link for your software package (.zip, .rar, or .7z).
-$AppDownloadUrl   = "https://api.github.com/repos/kaiohsg/i2p/releases/latest/Install-2-Path.zip"
+$AppDownloadUrl   = "https://api.github.com/repos/KaioHSG/i2p/releases/latest/Install-2-Path.zip"
 
 # [OPTIONAL] External tool for extraction. 
 # - Leave empty "" to use Windows native 'Expand-Archive' (Only works for .zip).
