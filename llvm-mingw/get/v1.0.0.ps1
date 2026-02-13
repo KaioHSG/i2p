@@ -1,4 +1,5 @@
 # LLVM-MinGW Installer v1.0.1
+
 $ErrorActionPreference = "Stop"
 
 $llvmMinGwApiUrl = "https://api.github.com/repos/mstorsjo/llvm-mingw"
@@ -23,7 +24,7 @@ if ($isAdministrator) {
     Write-Host "* Run as administrator to be able to change the System Variable, or continue with a local user installation. *`n" -ForegroundColor Yellow
 }
 
-Write-Host "LLVM-MinGW Installer v$version" -ForegroundColor Magenta
+Write-Host "LLVM-MinGW Installer v$version`n" -ForegroundColor Magenta
 Write-Host "=================================================="
 
 $builds = @(
@@ -69,7 +70,7 @@ Write-Host "--------------------------------------------------"
 if ($isRemote) {
     $dataDir = Join-Path $installPath "installer-cache"
 } else {
-    $dataDir = Join-Path $baseDir "llvm-mingw-installer-data"
+    $dataDir = Join-Path $baseDir "llvm-mingw Installer Data"
 }
 $latestBuildsDir = Join-Path $dataDir "latest-builds"
 

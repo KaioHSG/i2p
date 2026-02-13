@@ -27,7 +27,7 @@ if ($isAdministrator) {
 }
 
 # User Selection
-Write-Host "MinGW-w64 Installer v$version" -ForegroundColor Magenta
+Write-Host "MinGW-w64 Installer v$version`n" -ForegroundColor Magenta
 Write-Host "=================================================="
 
 $builds = @(
@@ -82,7 +82,7 @@ while ($true) {
 if ($isRemote) {
     $dataDir = Join-Path $installPath "installer-cache"
 } else {
-    $dataDir = Join-Path $baseDir "mingw-w64-installer-data"
+    $dataDir = Join-Path $baseDir "mingw-w64 Installer Data"
 }
 $binTools = Join-Path $dataDir "bin-tools"
 $latestBuildsDir = Join-Path $dataDir "latest-builds"
