@@ -91,7 +91,8 @@ $zipPath = Join-Path $latestBuildsDir $fileName
 if (-not (Test-Path $zipPath)) {
     Write-Host "Downloading package: $fileName..." -ForegroundColor Cyan
     try {
-        Invoke-WebRequest -Uri $AppDownloadUrl -OutFile $zipPath -ErrorAction Stop
+        $customUA = "B2P-Manager/$AppVersion ($AppName; Windows NT)"
+        Invoke-WebRequest -Uri $AppDownloadUrl -OutFile $zipPath -UserAgent $customUA
     } catch {
         Write-Host "--------------------------------------------------"
         Write-Host "CRITICAL ERROR: Failed to download package.`n" -ForegroundColor Red
