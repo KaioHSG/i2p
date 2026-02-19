@@ -56,18 +56,20 @@ if (-not [string]::IsNullOrWhiteSpace($Install)) {
         $rangeText = if ($showInstallOption) { "0-$($programs.Count)" } else { "1-$($programs.Count)" }
         $choice = Read-Host "`nChoice ($rangeText)"
 
+        $index = 0
+
         if ($choice -eq "0" -and $showInstallOption) {
             Install-B2P
-            return # Exit script to avoid continuing into the catch block incorrectly
+            return 
         } elseif ([int]::TryParse($choice, [ref]$index) -and $index -ge 1 -and $index -le $programs.Count) {
             $selected = $programs[$index - 1]
-            Write-Host "`nStarting $selected..."
+            Write-Host "`nStarting $selected..." -ForegroundColor Gray
             Invoke-Expression (Invoke-RestMethod -Uri "$baseUrl/$selected/get.ps1" -UserAgent $ua)
         } else {
-            Write-Host "Exiting..."
+            Write-Host "Exiting..." -ForegroundColor Gray
         }
     } catch {
-        Write-Host "CRITICAL ERROR: Operation failed." -ForegroundColor Red
+        Write-Host "`nCRITICAL ERROR: Operation failed." -ForegroundColor Red
         Write-Host $_.Exception.Message -ForegroundColor Yellow
     }
 }
