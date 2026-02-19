@@ -29,7 +29,7 @@ if (-not [string]::IsNullOrWhiteSpace($Install)) {
     try {
         $appScript = Invoke-RestMethod -Uri "$baseUrl/$Install/get.ps1" -UserAgent $ua
         Write-Host "`nBinary-2-Path" -ForegroundColor Magenta
-        Write-Host "The command line installer script.`n"
+        Write-Host "The command-line installer script.`n"
 
         Write-Host "Loading External Installer: $Install" -ForegroundColor Cyan
         Write-Host ("." * 50) "`n" -ForegroundColor DarkGray
@@ -47,10 +47,10 @@ if (-not [string]::IsNullOrWhiteSpace($Install)) {
         $showInstallOption = (-not $commandExists -or $UpdatePath)
 
         Write-Host "`nBinary-2-Path" -ForegroundColor Magenta
-        Write-Host "The command line installer script.`n"
+        Write-Host "The command-line installer script.`n"
         
         if ($showInstallOption) {
-            Write-Host "[0] > INSTALL 'b2p' COMMAND (Global Access) <" -ForegroundColor Cyan
+            Write-Host "[0] Install 'b2p' as a system command" -ForegroundColor Cyan
         }
 
         for ($i = 0; $i -lt $programs.Count; $i++) {
