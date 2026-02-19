@@ -21,18 +21,17 @@ function Install-B2P {
         [Environment]::SetEnvironmentVariable("Path", "$currentPath;$installDir", "User")
         $env:Path += ";$installDir"
         Write-Host "Success! Please RESTART your terminal to use 'b2p' command." -ForegroundColor Green
-    } else {
-        Write-Host "b2p is already in PATH and has been updated." -ForegroundColor Yellow
     }
 }
 
+
 if (-not [string]::IsNullOrWhiteSpace($Install)) {
-    Write-Host "`nFetching installer for: $Install..." -ForegroundColor Cyan
     try {
         $appScript = Invoke-RestMethod -Uri "$baseUrl/$Install/get.ps1" -UserAgent $ua
+        Write-Host "`n--- Loading External Installer: $Install ---`n" -ForegroundColor DarkGray
         Invoke-Expression $appScript
     } catch {
-        Write-Host "Error: Script '$Install' not found or connection failed." -ForegroundColor Red
+        Write-Host "Error: Script '$Install' not found." -ForegroundColor Red
     }
 } else {
     try {
@@ -57,13 +56,15 @@ if (-not [string]::IsNullOrWhiteSpace($Install)) {
         $choice = Read-Host "`nChoice ($rangeText)"
 
         $index = 0
-
         if ($choice -eq "0" -and $showInstallOption) {
             Install-B2P
             return 
         } elseif ([int]::TryParse($choice, [ref]$index) -and $index -ge 1 -and $index -le $programs.Count) {
             $selected = $programs[$index - 1]
-            Write-Host "`nStarting $selected..." -ForegroundColor Gray
+            
+            Write-Host "`nLoading External Installer: $selected" -ForegroundColor Cyan
+            Write-Host ("." * 50) "`n" -ForegroundColor DarkGray
+            
             Invoke-Expression (Invoke-RestMethod -Uri "$baseUrl/$selected/get.ps1" -UserAgent $ua)
         } else {
             Write-Host "Exiting..." -ForegroundColor Gray
