@@ -5,8 +5,8 @@ param (
 
 $installDir = "$env:LOCALAPPDATA\b2p"
 $binFile    = "$installDir\b2p.bat"
-$baseUrl    = "https://raw.githubusercontent.com/KaioHSG/i2p/refs/heads/main/dist"
-$apiUrl     = "https://api.github.com/repos/KaioHSG/i2p/contents/dist"
+$baseUrl    = "https://raw.githubusercontent.com/KaioHSG/b2p/refs/heads/main/dist"
+$apiUrl     = "https://api.github.com/repos/KaioHSG/b2p/contents/dist"
 $ua         = "B2P-Installer/1.0 (KaioHSG; +https://kaiohsg.dev)"
 
 function Install-B2P {
