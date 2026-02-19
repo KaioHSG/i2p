@@ -5,6 +5,7 @@ param (
 
 $installDir = "$env:LOCALAPPDATA\b2p"
 $binFile    = "$installDir\b2p.bat"
+$b2pUrl     = "https://raw.githubusercontent.com/KaioHSG/b2p/refs/heads/main/get.ps1"
 $baseUrl    = "https://raw.githubusercontent.com/KaioHSG/b2p/refs/heads/main/dist"
 $apiUrl     = "https://api.github.com/repos/KaioHSG/b2p/contents/dist"
 $ua         = "B2P-Installer/1.0 (KaioHSG; +https://kaiohsg.dev)"
@@ -13,7 +14,7 @@ function Install-B2P {
     Write-Host "`nConfiguring global 'b2p' command..." -ForegroundColor Cyan
     if (-not (Test-Path $installDir)) { New-Item -ItemType Directory -Path $installDir -Force | Out-Null }
     
-    $batContent = "@echo off`npowershell -NoProfile -ExecutionPolicy Bypass -Command `"& { `$s = irm 'https://kaiohsg.dev/i2p/get.ps1'; Invoke-Expression `$s }`" %*"
+    $batContent = "@echo off`npowershell -NoProfile -ExecutionPolicy Bypass -Command `"& { `$s = irm '$b2pUrl'; Invoke-Expression `$s }`" %*"
     $batContent | Out-File -FilePath $binFile -Encoding ASCII
     
     $currentPath = [Environment]::GetEnvironmentVariable("Path", "User")
